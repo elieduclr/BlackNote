@@ -4,6 +4,8 @@ import { Header } from './components/Header';
 import { NoteCard } from './components/NoteCard';
 import { NoteEditor } from './components/NoteEditor';
 import { EmptyState } from './components/EmptyState';
+import { SearchBar } from './components/SearchBar';
+import { TagFilter } from './components/TagFilter';
 import { BlackNoteStorage } from './utils/storage';
 import type { Note } from './types';
 
@@ -16,6 +18,10 @@ function App() {
   const [isEditorOpen, setIsEditorOpen] = useState(false);
   const [editingNote, setEditingNote] = useState<Note | undefined>();
   const [isLoading, setIsLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [allTags, setAllTags] = useState<string[]>([]);
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Load notes metadata on authentication
@@ -159,6 +165,8 @@ function App() {
       setNotesMetadata([]);
       setIsEditorOpen(false);
       setEditingNote(undefined);
+      setSearchQuery('');
+      setSelectedTags([]);
     }
   };
 
@@ -168,24 +176,44 @@ function App() {
       if (!isAuthenticated || notesMetadata.length === 0) return;
       
       const loadedNotes: Note[] = [];
-      for (const metadata of notesMetadata.slice(0, 20)) { // Load first 20 notes
+      for (const metadata of notesMetadata.slice(0, 50)) {
         const note = await loadNote(metadata.id);
         if (note) {
           loadedNotes.push(note);
         }
       }
       setNotes(loadedNotes);
+      
+      // Extract all unique tags
+      const tags = new Set<string>();
+      loadedNotes.forEach(note => {
+        note.tags.forEach(tag => tags.add(tag));
+      });
+      setAllTags(Array.from(tags).sort());
     };
 
     loadVisibleNotes();
   }, [notesMetadata, isAuthenticated]);
 
+  // Filter notes based on search and tags
+  const filteredNotes = notes.filter(note => {
+    const matchesSearch = searchQuery === '' || 
+      note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      note.content.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    const matchesTags = selectedTags.length === 0 ||
+      selectedTags.every(tag => note.tags.includes(tag));
+    
+    return matchesSearch && matchesTags;
+  });
+
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <MasterPasswordModal
         isOpen={!isAuthenticated}
         onPasswordSubmit={handlePasswordSubmit}
         error={authError}
+        isLoading={isLoading}
       />
 
       {isAuthenticated && (
@@ -196,21 +224,71 @@ function App() {
             onImport={handleImport}
             onLogout={handleLogout}
             noteCount={notesMetadata.length}
+            viewMode={viewMode}
+            onViewModeChange={setViewMode}
           />
 
-          <main className="container mx-auto px-6 py-8">
+          <main className="container mx-auto px-4 sm:px-6 py-6">
             {notesMetadata.length === 0 ? (
               <EmptyState onNewNote={handleNewNote} />
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {notes.map((note) => (
-                  <NoteCard
-                    key={note.id}
-                    {...note}
-                    onEdit={handleEditNote}
-                    onDelete={handleDeleteNote}
-                  />
-                ))}
+              <div className="space-y-6">
+                {/* Search and Filter Section */}
+                <div className="flex flex-col lg:flex-row gap-4">
+                  <div className="flex-1">
+                    <SearchBar
+                      value={searchQuery}
+                      onChange={setSearchQuery}
+                      placeholder="Search notes by title or content..."
+                    />
+                  </div>
+                  <div className="lg:w-80">
+                    <TagFilter
+                      allTags={allTags}
+                      selectedTags={selectedTags}
+                      onTagsChange={setSelectedTags}
+                    />
+                  </div>
+                </div>
+
+                {/* Results Summary */}
+                <div className="flex items-center justify-between text-sm text-slate-400">
+                  <span>
+                    {filteredNotes.length} of {notes.length} notes
+                    {searchQuery && ` matching "${searchQuery}"`}
+                    {selectedTags.length > 0 && ` with tags: ${selectedTags.join(', ')}`}
+                  </span>
+                </div>
+
+                {/* Notes Grid/List */}
+                {filteredNotes.length === 0 ? (
+                  <div className="text-center py-12">
+                    <div className="text-slate-400 text-lg mb-2">No notes found</div>
+                    <div className="text-slate-500 text-sm">
+                      {searchQuery || selectedTags.length > 0 
+                        ? 'Try adjusting your search or filters'
+                        : 'Create your first note to get started'
+                      }
+                    </div>
+                  </div>
+                ) : (
+                  <div className={
+                    viewMode === 'grid' 
+                      ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                      : "space-y-4"
+                  }>
+                    {filteredNotes.map((note, index) => (
+                      <NoteCard
+                        key={note.id}
+                        {...note}
+                        onEdit={handleEditNote}
+                        onDelete={handleDeleteNote}
+                        viewMode={viewMode}
+                        animationDelay={index * 50}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
             )}
           </main>

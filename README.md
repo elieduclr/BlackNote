@@ -5,7 +5,7 @@
 *"When privacy matters, trust no cloud."*
 
 ![BlackNote.js](https://img.shields.io/badge/BlackNote.js-Ultra--Secure-blue?style=for-the-badge&logo=shield&logoColor=white)
-![Version](https://img.shields.io/badge/version-1.0.0-green?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-1.1.0-green?style=for-the-badge)
 ![License](https://img.shields.io/badge/license-MIT-yellow?style=for-the-badge)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)

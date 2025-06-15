@@ -1,0 +1,30 @@
+<svg width="72" height="72" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="36" cy="36" r="34" fill="url(#bgGradient)" />
+  
+  <!-- Shield icon -->
+  <g transform="translate(18, 14.4)">
+    <path d="M18 7.2L28.8 3.6C29.52 3.36 30.48 3.36 31.2 3.6L42 7.2C43.2 7.68 44 8.88 44 10.2V25.2C44 32.4 39.6 38.88 33 41.76L31.2 42.48C30.48 42.72 29.52 42.72 28.8 42.48L27 41.76C20.4 38.88 16 32.4 16 25.2V10.2C16 8.88 16.8 7.68 18 7.2Z" fill="url(#shieldGradient)" />
+    
+    <!-- Lock symbol inside shield -->
+    <rect x="25.2" y="20.16" width="12.24" height="10.8" rx="1.44" fill="#0f172a" />
+    <path d="M27.36 20.16V17.28C27.36 15.12 29.04 13.44 31.2 13.44C33.36 13.44 35.04 15.12 35.04 17.28V20.16" stroke="#0f172a" stroke-width="1.08" fill="none" />
+  </g>
+  
+  <!-- Sparkle effects -->
+  <circle cx="57.6" cy="14.4" r="1.44" fill="#ffffff" opacity="0.8" />
+  <circle cx="10.8" cy="54" r="1.08" fill="#ffffff" opacity="0.6" />
+  <circle cx="61.2" cy="61.2" r="0.72" fill="#ffffff" opacity="0.7" />
+</svg>

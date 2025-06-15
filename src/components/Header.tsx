@@ -1,5 +1,6 @@
 import React from 'react';
 import { Shield, Plus, Download, Upload, LogOut, Grid3X3, List, Sparkles } from 'lucide-react';
+import { OfflineIndicator } from './OfflineIndicator';
 
 interface HeaderProps {
   onNewNote: () => void;
@@ -37,6 +38,9 @@ export function Header({
                   <h1 className="text-xl font-bold bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
                     BlackNote.js
                   </h1>
+                  <span className="px-2 py-0.5 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-cyan-400 text-xs font-bold rounded-md border border-cyan-500/30">
+                    v2.0.0
+                  </span>
                   <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
                 </div>
                 <p className="text-xs text-slate-400 font-medium">Ultra-Secure Local Notes</p>
@@ -63,6 +67,9 @@ export function Header({
           </div>
 
           <div className="flex items-center space-x-3">
+            {/* Offline Indicator */}
+            <OfflineIndicator />
+
             {/* View Mode Toggle */}
             <div className="hidden sm:flex items-center bg-slate-800/50 rounded-lg border border-slate-700/50 p-1">
               <button

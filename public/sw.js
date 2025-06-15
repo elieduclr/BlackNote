@@ -1,9 +1,9 @@
-// BlackNote.js Service Worker v2.0.1
+// BlackNote.js Service Worker v2.0.2
 // Ultra-secure offline-first note manager
 
-const CACHE_NAME = 'blacknote-v2.0.1';
-const STATIC_CACHE = 'blacknote-static-v2.0.1';
-const DYNAMIC_CACHE = 'blacknote-dynamic-v2.0.1';
+const CACHE_NAME = 'blacknote-v2.0.2';
+const STATIC_CACHE = 'blacknote-static-v2.0.2';
+const DYNAMIC_CACHE = 'blacknote-dynamic-v2.0.2';
 
 // Files to cache for offline functionality
 const STATIC_FILES = [
@@ -17,7 +17,7 @@ const STATIC_FILES = [
 
 // Install event - cache static files
 self.addEventListener('install', (event) => {
-  console.log('[SW] Installing BlackNote.js Service Worker v2.0.1');
+  console.log('[SW] Installing BlackNote.js Service Worker v2.0.2');
   
   event.waitUntil(
     caches.open(STATIC_CACHE)
@@ -37,7 +37,7 @@ self.addEventListener('install', (event) => {
 
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
-  console.log('[SW] Activating BlackNote.js Service Worker v2.0.1');
+  console.log('[SW] Activating BlackNote.js Service Worker v2.0.2');
   
   event.waitUntil(
     caches.keys()
@@ -153,7 +153,7 @@ self.addEventListener('message', (event) => {
   }
   
   if (event.data && event.data.type === 'GET_VERSION') {
-    event.ports[0].postMessage({ version: '2.0.1' });
+    event.ports[0].postMessage({ version: '2.0.2' });
   }
   
   if (event.data && event.data.type === 'CLEAR_CACHE') {
@@ -202,4 +202,4 @@ self.addEventListener('unhandledrejection', (event) => {
   console.error('[SW] Unhandled promise rejection:', event.reason);
 });
 
-console.log('[SW] BlackNote.js Service Worker v2.0.1 loaded');
+console.log('[SW] BlackNote.js Service Worker v2.0.2 loaded');

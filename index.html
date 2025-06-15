@@ -4,11 +4,59 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BlackNote.js - Ultra-Secure Local Notes</title>
-    <meta name="description" content="When privacy matters, trust no cloud. Ultra-secure local note manager with Double Lock & Obfuscate encryption.">
+    <title>BlackNote.js v2.0.0 - Ultra-Secure Local Notes</title>
+    <meta name="description" content="When privacy matters, trust no cloud. Ultra-secure local note manager with Double Lock & Obfuscate encryption. Now with full offline support.">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Theme colors -->
+    <meta name="theme-color" content="#06b6d4">
+    <meta name="msapplication-TileColor" content="#0f172a">
+    
+    <!-- Apple PWA - Updated meta tag -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BlackNote.js">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icon-120x120.png">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/src/main.tsx" as="script">
+    <link rel="preload" href="/src/index.css" as="style">
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Offline fallback message -->
+    <noscript>
+      <div style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #0f172a;
+        color: #06b6d4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: system-ui, sans-serif;
+        text-align: center;
+        padding: 2rem;
+      ">
+        <div>
+          <h1>🔐 BlackNote.js v2.0.0</h1>
+          <p>JavaScript is required for this ultra-secure note manager.</p>
+          <p><em>"When privacy matters, trust no cloud."</em></p>
+        </div>
+      </div>
+    </noscript>
   </body>
 </html>

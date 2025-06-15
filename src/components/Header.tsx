@@ -39,7 +39,7 @@ export function Header({
                     BlackNote.js
                   </h1>
                   <span className="px-2 py-0.5 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-cyan-400 text-xs font-bold rounded-md border border-cyan-500/30">
-                    v2.0.0
+                    v2.0.1
                   </span>
                   <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
                 </div>

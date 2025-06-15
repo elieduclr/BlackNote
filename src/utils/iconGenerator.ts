@@ -69,7 +69,7 @@ export function generateScreenshotPlaceholder(width: number, height: number, lab
         ${label}
       </text>
       <text x="${width/2}" y="${height * 0.9}" text-anchor="middle" fill="#64748b" font-family="system-ui, sans-serif" font-size="${Math.min(width, height) * 0.02}">
-        BlackNote.js v2.0.0 - Ultra-Secure Local Notes
+        BlackNote.js v2.0.1 - Ultra-Secure Local Notes
       </text>
     </svg>
   `;

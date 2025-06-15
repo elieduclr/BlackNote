@@ -1,4 +1,4 @@
-// Service Worker registration and management for BlackNote.js v2.0.0
+// Service Worker registration and management for BlackNote.js v2.0.1
 
 export interface ServiceWorkerStatus {
   isSupported: boolean;

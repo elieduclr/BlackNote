@@ -2,7 +2,7 @@
   "name": "BlackNote.js - Ultra-Secure Local Notes",
   "short_name": "BlackNote.js",
   "description": "When privacy matters, trust no cloud. Ultra-secure local note manager with Double Lock & Obfuscate encryption.",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0f172a",
@@ -12,60 +12,35 @@
   "lang": "en",
   "categories": ["productivity", "utilities", "security"],
   "icons": [
-    {
-      "src": "/icon-72x72.png",
-      "sizes": "72x72",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icon-96x96.png",
-      "sizes": "96x96",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icon-128x128.png",
-      "sizes": "128x128",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icon-152x152.png",
-      "sizes": "152x152",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icon-180x180.png",
-      "sizes": "180x180",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icon-384x384.png",
-      "sizes": "384x384",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    { "src": "/icon-72x72.png", "sizes": "72x72", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-72x72-maskable.png", "sizes": "72x72", "type": "image/png", "purpose": "maskable" },
+    
+    { "src": "/icon-96x96.png", "sizes": "96x96", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-96x96-maskable.png", "sizes": "96x96", "type": "image/png", "purpose": "maskable" },
+    
+    { "src": "/icon-120x120.png", "sizes": "120x120", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-120x120-maskable.png", "sizes": "120x120", "type": "image/png", "purpose": "maskable" },
+
+    { "src": "/icon-128x128.png", "sizes": "128x128", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-128x128-maskable.png", "sizes": "128x128", "type": "image/png", "purpose": "maskable" },
+
+    { "src": "/icon-144x144.png", "sizes": "144x144", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-144x144-maskable.png", "sizes": "144x144", "type": "image/png", "purpose": "maskable" },
+
+    { "src": "/icon-152x152.png", "sizes": "152x152", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-152x152-maskable.png", "sizes": "152x152", "type": "image/png", "purpose": "maskable" },
+
+    { "src": "/icon-180x180.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-180x180-maskable.png", "sizes": "180x180", "type": "image/png", "purpose": "maskable" },
+
+    { "src": "/icon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-192x192-maskable.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+
+    { "src": "/icon-384x384.png", "sizes": "384x384", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-384x384-maskable.png", "sizes": "384x384", "type": "image/png", "purpose": "maskable" },
+
+    { "src": "/icon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512x512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
     {
@@ -76,7 +51,8 @@
       "icons": [
         {
           "src": "/icon-96x96.png",
-          "sizes": "96x96"
+          "sizes": "96x96",
+          "type": "image/png"
         }
       ]
     },
@@ -88,7 +64,8 @@
       "icons": [
         {
           "src": "/icon-96x96.png",
-          "sizes": "96x96"
+          "sizes": "96x96",
+          "type": "image/png"
         }
       ]
     }

@@ -228,13 +228,13 @@ function App() {
             onViewModeChange={setViewMode}
           />
 
-          <main className="container mx-auto px-4 sm:px-6 py-6">
+          <main className="container mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6">
             {notesMetadata.length === 0 ? (
               <EmptyState onNewNote={handleNewNote} />
             ) : (
-              <div className="space-y-6">
-                {/* Search and Filter Section */}
-                <div className="flex flex-col lg:flex-row gap-4">
+              <div className="space-y-4 sm:space-y-6">
+                {/* Search and Filter Section - Responsive */}
+                <div className="flex flex-col space-y-3 sm:space-y-4 lg:flex-row lg:space-y-0 lg:space-x-4">
                   <div className="flex-1">
                     <SearchBar
                       value={searchQuery}
@@ -242,7 +242,7 @@ function App() {
                       placeholder="Search notes by title or content..."
                     />
                   </div>
-                  <div className="lg:w-80">
+                  <div className="w-full lg:w-80">
                     <TagFilter
                       allTags={allTags}
                       selectedTags={selectedTags}
@@ -251,19 +251,23 @@ function App() {
                   </div>
                 </div>
 
-                {/* Results Summary */}
-                <div className="flex items-center justify-between text-sm text-slate-400">
+                {/* Results Summary - Responsive */}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm text-slate-400">
                   <span>
                     {filteredNotes.length} of {notes.length} notes
                     {searchQuery && ` matching "${searchQuery}"`}
-                    {selectedTags.length > 0 && ` with tags: ${selectedTags.join(', ')}`}
                   </span>
+                  {selectedTags.length > 0 && (
+                    <span className="text-xs sm:text-sm">
+                      Tags: {selectedTags.join(', ')}
+                    </span>
+                  )}
                 </div>
 
-                {/* Notes Grid/List */}
+                {/* Notes Grid/List - Fully Responsive */}
                 {filteredNotes.length === 0 ? (
-                  <div className="text-center py-12">
-                    <div className="text-slate-400 text-lg mb-2">No notes found</div>
+                  <div className="text-center py-8 sm:py-12">
+                    <div className="text-slate-400 text-base sm:text-lg mb-2">No notes found</div>
                     <div className="text-slate-500 text-sm">
                       {searchQuery || selectedTags.length > 0 
                         ? 'Try adjusting your search or filters'
@@ -274,8 +278,8 @@ function App() {
                 ) : (
                   <div className={
                     viewMode === 'grid' 
-                      ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-                      : "space-y-4"
+                      ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 sm:gap-4 lg:gap-6"
+                      : "space-y-3 sm:space-y-4"
                   }>
                     {filteredNotes.map((note, index) => (
                       <NoteCard

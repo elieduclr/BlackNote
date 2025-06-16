@@ -2,7 +2,7 @@
   "name": "BlackNote.js - Ultra-Secure Local Notes",
   "short_name": "BlackNote.js",
   "description": "When privacy matters, trust no cloud. Ultra-secure local note manager with Double Lock & Obfuscate encryption.",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0f172a",

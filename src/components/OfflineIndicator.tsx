@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Wifi, WifiOff, Download, RefreshCw, AlertCircle, CheckCircle } from 'lucide-react';
+import { Wifi, WifiOff, Download, RefreshCw, AlertCircle, CheckCircle, X } from 'lucide-react';
 import { serviceWorkerManager, type ServiceWorkerStatus } from '../utils/serviceWorker';
 
 export function OfflineIndicator() {
@@ -75,30 +75,30 @@ export function OfflineIndicator() {
     <div className="relative">
       <button
         onClick={() => setShowDetails(!showDetails)}
-        className={`flex items-center space-x-2 px-3 py-1.5 bg-slate-800/50 rounded-lg border border-slate-700/50 transition-all duration-200 hover:bg-slate-800/70 ${getStatusColor()}`}
+        className={`flex items-center space-x-1.5 sm:space-x-2 px-2 sm:px-3 py-1.5 bg-slate-800/50 rounded-lg border border-slate-700/50 transition-all duration-200 hover:bg-slate-800/70 ${getStatusColor()}`}
         title={`Network status: ${getStatusText()}`}
       >
         {getStatusIcon()}
-        <span className="text-sm font-medium">{getStatusText()}</span>
+        <span className="text-xs sm:text-sm font-medium hidden sm:inline">{getStatusText()}</span>
         {swStatus.updateAvailable && (
           <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
         )}
       </button>
 
       {showDetails && (
-        <div className="absolute top-full right-0 mt-2 w-80 bg-slate-800/95 backdrop-blur-xl border border-slate-700/50 rounded-xl shadow-xl z-50 p-4">
-          <div className="space-y-4">
+        <div className="absolute top-full right-0 mt-2 w-72 sm:w-80 bg-slate-800/95 backdrop-blur-xl border border-slate-700/50 rounded-lg sm:rounded-xl shadow-xl z-50 p-3 sm:p-4">
+          <div className="space-y-3 sm:space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-semibold text-white">Offline Status</h3>
               <button
                 onClick={() => setShowDetails(false)}
-                className="text-slate-400 hover:text-slate-300"
+                className="text-slate-400 hover:text-slate-300 p-1"
               >
-                ×
+                <X className="w-4 h-4" />
               </button>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-2 sm:space-y-3">
               {/* Network Status */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
@@ -141,7 +141,7 @@ export function OfflineIndicator() {
 
               {/* Update Available */}
               {swStatus.updateAvailable && (
-                <div className="pt-3 border-t border-slate-700/50">
+                <div className="pt-2 sm:pt-3 border-t border-slate-700/50">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm text-yellow-400 font-medium">Update Available</span>
                     <Download className="w-4 h-4 text-yellow-400" />
@@ -167,7 +167,7 @@ export function OfflineIndicator() {
               )}
 
               {/* Offline Capabilities */}
-              <div className="pt-3 border-t border-slate-700/50">
+              <div className="pt-2 sm:pt-3 border-t border-slate-700/50">
                 <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-2">
                   Offline Features
                 </h4>

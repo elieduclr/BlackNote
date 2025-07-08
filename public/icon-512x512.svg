@@ -1,0 +1,40 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="250" fill="url(#bgGradient)" />
+  
+  <!-- Shield icon -->
+  <g transform="translate(128, 102.4)">
+    <path d="M128 51.2L204.8 25.6C209.92 23.89 214.08 23.89 219.2 25.6L296 51.2C304 54.61 309.33 63.15 309.33 72.53V179.2C309.33 230.4 281.6 276.48 234.67 296.96L219.2 302.08C214.08 303.79 209.92 303.79 204.8 302.08L189.33 296.96C142.4 276.48 114.67 230.4 114.67 179.2V72.53C114.67 63.15 120 54.61 128 51.2Z" fill="url(#shieldGradient)" />
+    
+    <!-- Lock symbol inside shield -->
+    <rect x="179.2" y="143.36" width="87.04" height="76.8" rx="10.24" fill="#0f172a" />
+    <path d="M194.56 143.36V122.88C194.56 107.52 206.34 95.36 221.87 95.36C237.23 95.36 249.01 107.52 249.01 122.88V143.36" stroke="#0f172a" stroke-width="7.68" fill="none" />
+    
+    <!-- Key hole -->
+    <circle cx="222" cy="180" r="8" fill="#06b6d4" />
+    <rect x="218" y="180" width="8" height="16" fill="#06b6d4" />
+  </g>
+  
+  <!-- Sparkle effects -->
+  <circle cx="409.6" cy="102.4" r="10.24" fill="#ffffff" opacity="0.8" />
+  <circle cx="76.8" cy="384" r="7.68" fill="#ffffff" opacity="0.6" />
+  <circle cx="435.2" cy="435.2" r="5.12" fill="#ffffff" opacity="0.7" />
+  
+  <!-- Additional decorative elements -->
+  <circle cx="128" cy="128" r="3" fill="#ffffff" opacity="0.5" />
+  <circle cx="384" cy="384" r="4" fill="#ffffff" opacity="0.4" />
+  <circle cx="64" cy="256" r="2" fill="#ffffff" opacity="0.6" />
+  <circle cx="448" cy="256" r="3" fill="#ffffff" opacity="0.5" />
+</svg>

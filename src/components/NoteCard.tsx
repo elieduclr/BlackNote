@@ -66,14 +66,14 @@ export function NoteCard({
         className="group bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/50 hover:border-slate-600/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10 hover:bg-slate-800/60 animate-fade-in-up"
         style={{ animationDelay: `${animationDelay}ms` }}
       >
-        <div className="p-6">
-          <div className="flex items-start justify-between">
+        <div className="p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
             <div className="flex-1 min-w-0">
               <div className="flex items-center space-x-3 mb-3">
-                <div className="p-2 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-lg border border-cyan-500/30">
+                <div className="p-2 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-lg border border-cyan-500/30 flex-shrink-0">
                   <FileText className="w-4 h-4 text-cyan-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors duration-200 truncate">
+                <h3 className="text-base sm:text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors duration-200 truncate">
                   {title || 'Untitled Note'}
                 </h3>
               </div>
@@ -84,7 +84,7 @@ export function NoteCard({
                 </p>
               )}
 
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div className="flex items-center space-x-4 text-xs text-slate-500">
                   <div className="flex items-center space-x-1">
                     <Calendar className="w-3 h-3" />
@@ -98,7 +98,7 @@ export function NoteCard({
 
                 {tags.length > 0 && (
                   <div className="flex items-center space-x-2">
-                    <Tags className="w-3 h-3 text-slate-400" />
+                    <Tags className="w-3 h-3 text-slate-400 flex-shrink-0" />
                     <div className="flex flex-wrap gap-1">
                       {tags.slice(0, 3).map((tag, index) => (
                         <span
@@ -119,17 +119,17 @@ export function NoteCard({
               </div>
             </div>
 
-            <div className="flex space-x-2 opacity-0 group-hover:opacity-100 transition-all duration-200 ml-4">
+            <div className="flex sm:flex-col space-x-2 sm:space-x-0 sm:space-y-2 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-all duration-200">
               <button
                 onClick={() => onEdit(id)}
-                className="p-2 text-slate-400 hover:text-cyan-400 hover:bg-slate-700/50 rounded-lg transition-all duration-200 hover:scale-110"
+                className="flex items-center justify-center w-8 h-8 text-slate-400 hover:text-cyan-400 hover:bg-slate-700/50 rounded-lg transition-all duration-200 hover:scale-110"
                 title="Edit note"
               >
                 <Edit3 className="w-4 h-4" />
               </button>
               <button
                 onClick={() => onDelete(id)}
-                className="p-2 text-slate-400 hover:text-red-400 hover:bg-slate-700/50 rounded-lg transition-all duration-200 hover:scale-110"
+                className="flex items-center justify-center w-8 h-8 text-slate-400 hover:text-red-400 hover:bg-slate-700/50 rounded-lg transition-all duration-200 hover:scale-110"
                 title="Delete note"
               >
                 <Trash2 className="w-4 h-4" />
@@ -146,27 +146,27 @@ export function NoteCard({
       className="group bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/50 hover:border-slate-600/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10 hover:bg-slate-800/60 hover:-translate-y-1 animate-fade-in-up"
       style={{ animationDelay: `${animationDelay}ms` }}
     >
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center space-x-3 flex-1 min-w-0">
             <div className="p-2 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-lg border border-cyan-500/30 flex-shrink-0">
               <FileText className="w-4 h-4 text-cyan-400" />
             </div>
-            <h3 className="text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors duration-200 truncate">
+            <h3 className="text-base sm:text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors duration-200 truncate">
               {title || 'Untitled Note'}
             </h3>
           </div>
-          <div className="flex space-x-2 opacity-0 group-hover:opacity-100 transition-all duration-200">
+          <div className="flex space-x-2 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-all duration-200">
             <button
               onClick={() => onEdit(id)}
-              className="p-2 text-slate-400 hover:text-cyan-400 hover:bg-slate-700/50 rounded-lg transition-all duration-200 hover:scale-110"
+              className="flex items-center justify-center w-8 h-8 text-slate-400 hover:text-cyan-400 hover:bg-slate-700/50 rounded-lg transition-all duration-200 hover:scale-110"
               title="Edit note"
             >
               <Edit3 className="w-4 h-4" />
             </button>
             <button
               onClick={() => onDelete(id)}
-              className="p-2 text-slate-400 hover:text-red-400 hover:bg-slate-700/50 rounded-lg transition-all duration-200 hover:scale-110"
+              className="flex items-center justify-center w-8 h-8 text-slate-400 hover:text-red-400 hover:bg-slate-700/50 rounded-lg transition-all duration-200 hover:scale-110"
               title="Delete note"
             >
               <Trash2 className="w-4 h-4" />

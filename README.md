@@ -1,16 +1,16 @@
-# 🔐 BlackNote.js v2.0.3
+# 🔐 BlackNote.js v2.0.4
 
 **Gestionnaire de notes local ultra-sécurisé avec mode hors ligne complet**
 
 *"When privacy matters, trust no cloud."*
 
 ![BlackNote.js](https://img.shields.io/badge/BlackNote.js-Ultra--Secure-blue?style=for-the-badge&logo=shield&logoColor=white)
-![Version](https://img.shields.io/badge/version-2.0.3-green?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-2.0.4-green?style=for-the-badge)
 ![PWA](https://img.shields.io/badge/PWA-Ready-purple?style=for-the-badge)
 ![Offline](https://img.shields.io/badge/Offline-First-orange?style=for-the-badge)
 ![License](https://img.shields.io/badge/license-MIT-yellow?style=for-the-badge)
 
-## 🚀 **Nouveautés v2.0.3**
+## 🚀 **Nouveautés v2.0.4**
 
 ### 📱 **Mode Hors Ligne Complet**
 - **Service Worker ultra-sécurisé** : Fonctionnement 100% offline
@@ -27,7 +27,7 @@
 ## 📋 Table des matières
 
 - [🎯 À propos](#-à-propos)
-- [✨ Fonctionnalités v2.0.3](#-fonctionnalités-v200)
+- [✨ Fonctionnalités v2.0.4](#-fonctionnalités-v200)
 - [🔒 Sécurité](#-sécurité)
 - [📱 PWA et Mode Hors Ligne](#-pwa-et-mode-hors-ligne)
 - [🚀 Installation](#-installation)
@@ -40,9 +40,9 @@
 
 ## 🎯 À propos
 
-BlackNote.js v2.0.3 est un gestionnaire de notes local révolutionnaire qui fonctionne intégralement dans votre navigateur, **sans aucun serveur ni cloud**. Cette nouvelle version introduit le **mode hors ligne complet** avec Service Worker, transformant BlackNote.js en véritable PWA (Progressive Web App).
+BlackNote.js v2.0.4 est un gestionnaire de notes local révolutionnaire qui fonctionne intégralement dans votre navigateur, **sans aucun serveur ni cloud**. Cette nouvelle version introduit le **mode hors ligne complet** avec Service Worker, transformant BlackNote.js en véritable PWA (Progressive Web App).
 
-### 🌟 Pourquoi BlackNote.js v2.0.3 ?
+### 🌟 Pourquoi BlackNote.js v2.0.4 ?
 
 - **🔒 Confidentialité totale** : Vos notes ne quittent jamais votre appareil
 - **📱 Mode hors ligne** : Fonctionnement complet sans connexion internet
@@ -50,7 +50,7 @@ BlackNote.js v2.0.3 est un gestionnaire de notes local révolutionnaire qui fonc
 - **⚡ Performance native** : Installation comme application native
 - **🎨 Design moderne** : Interface élégante et intuitive
 
-## ✨ Fonctionnalités v2.0.3
+## ✨ Fonctionnalités v2.0.4
 
 ### 📱 **PWA (Progressive Web App)**
 - **Installation native** : Ajout à l'écran d'accueil mobile/desktop
@@ -80,7 +80,7 @@ BlackNote.js v2.0.3 est un gestionnaire de notes local révolutionnaire qui fonc
 
 ## 🔒 Sécurité
 
-BlackNote.js v2.0.3 maintient les mêmes standards de sécurité de niveau militaire :
+BlackNote.js v2.0.4 maintient les mêmes standards de sécurité de niveau militaire :
 
 ### 🛡️ Algorithme "Double Lock & Obfuscate" (Inchangé)
 
@@ -156,7 +156,7 @@ npm run preview
 
 ## 💻 Utilisation
 
-### Premier lancement v2.0.3
+### Premier lancement v2.0.4
 
 1. **Accéder à l'application** via navigateur
 2. **Installer la PWA** (optionnel mais recommandé)
@@ -164,7 +164,7 @@ npm run preview
 4. **Vérifier le mode offline** via l'indicateur de statut
 5. **Créer votre première note** chiffrée
 
-### Nouvelles fonctionnalités v2.0.3
+### Nouvelles fonctionnalités v2.0.4
 
 ```typescript
 // Vérification du statut offline
@@ -181,7 +181,7 @@ if (window.deferredPrompt) {
 
 ## 🧬 Algorithme de chiffrement
 
-L'algorithme **Double Lock & Obfuscate** reste inchangé en v2.0.3, garantissant la compatibilité totale avec les notes existantes.
+L'algorithme **Double Lock & Obfuscate** reste inchangé en v2.0.4, garantissant la compatibilité totale avec les notes existantes.
 
 ### Processus de chiffrement (Identique v1.0.0)
 
@@ -220,7 +220,7 @@ graph TD
 - **ESLint** - Analyse statique du code
 - **PostCSS** - Traitement CSS avancé
 
-## 📦 Structure du projet v2.0.3
+## 📦 Structure du projet v2.0.4
 
 ```
 blacknote-js/
@@ -250,9 +250,9 @@ blacknote-js/
 │   ├── App.tsx                 # Composant principal
 │   ├── main.tsx                # Point d'entrée avec PWA
 │   └── index.css               # Styles globaux
-├── package.json                # Dépendances v2.0.3
+├── package.json                # Dépendances v2.0.4
 ├── vite.config.ts              # Configuration Vite + PWA
-└── README.md                   # Documentation v2.0.3
+└── README.md                   # Documentation v2.0.4
 ```
 
 ## 🔄 Roadmap v2.x
@@ -277,9 +277,9 @@ blacknote-js/
 
 ## 🤝 Contribution
 
-Les contributions sont les bienvenues pour BlackNote.js v2.0.3 ! 
+Les contributions sont les bienvenues pour BlackNote.js v2.0.4 ! 
 
-### Domaines de contribution v2.0.3
+### Domaines de contribution v2.0.4
 
 - 🔒 **Sécurité** : Amélioration des algorithmes cryptographiques
 - 📱 **PWA** : Optimisation des fonctionnalités hors ligne
@@ -291,7 +291,7 @@ Les contributions sont les bienvenues pour BlackNote.js v2.0.3 !
 
 Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
 
-## 🙏 Remerciements v2.0.3
+## 🙏 Remerciements v2.0.4
 
 - **Service Worker Community** : Pour les meilleures pratiques PWA
 - **Web Standards** : Pour les APIs modernes du navigateur
@@ -305,7 +305,7 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 
 <div align="center">
 
-**🔐 BlackNote.js v2.0.3 - Quand la confidentialité compte, ne faites confiance à aucun cloud.**
+**🔐 BlackNote.js v2.0.4 - Quand la confidentialité compte, ne faites confiance à aucun cloud.**
 
 **📱 Maintenant avec mode hors ligne complet et PWA !**
 

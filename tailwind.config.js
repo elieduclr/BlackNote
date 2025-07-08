@@ -5,6 +5,8 @@ export default {
     extend: {
       screens: {
         'xs': '475px',
+        '2xs': '375px',
+        '3xs': '320px',
       },
       spacing: {
         '18': '4.5rem',

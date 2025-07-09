@@ -6,6 +6,7 @@ import { NoteEditor } from './components/NoteEditor';
 import { EmptyState } from './components/EmptyState';
 import { SearchBar } from './components/SearchBar';
 import { TagFilter } from './components/TagFilter';
+import { NoteViewer } from './components/NoteViewer';
 import { BlackNoteStorage } from './utils/storage';
 import type { Note } from './types';
 
@@ -22,6 +23,7 @@ function App() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [allTags, setAllTags] = useState<string[]>([]);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [viewingNote, setViewingNote] = useState<Note | undefined>();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Load notes metadata on authentication
@@ -81,6 +83,13 @@ function App() {
     if (note) {
       setEditingNote(note);
       setIsEditorOpen(true);
+    }
+  };
+
+  const handleViewNote = async (id: string) => {
+    const note = await loadNote(id);
+    if (note) {
+      setViewingNote(note);
     }
   };
 
@@ -286,6 +295,7 @@ function App() {
                         key={note.id}
                         {...note}
                         onEdit={handleEditNote}
+                        onView={handleViewNote}
                         onDelete={handleDeleteNote}
                         viewMode={viewMode}
                         animationDelay={index * 50}
@@ -305,6 +315,16 @@ function App() {
               setIsEditorOpen(false);
               setEditingNote(undefined);
             }}
+          />
+
+          <NoteViewer
+            note={viewingNote}
+            isOpen={!!viewingNote}
+            onEdit={(id) => {
+              setViewingNote(undefined);
+              handleEditNote(id);
+            }}
+            onClose={() => setViewingNote(undefined)}
           />
 
           <input

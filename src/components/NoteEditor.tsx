@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Save, X, Tags, Lock, FileText, Hash, Sparkles, Maximize2, Minimize2 } from 'lucide-react';
+import { Save, X, Tags, Lock, FileText, Hash, Sparkles, Maximize2, Minimize2, SplitSquareHorizontal, Edit3 } from 'lucide-react';
+import { MarkdownPreview } from './MarkdownPreview';
 import type { Note } from '../types';
 
 interface NoteEditorProps {
@@ -18,6 +19,9 @@ export function NoteEditor({ note, onSave, onCancel, isOpen }: NoteEditorProps) 
   const [wordCount, setWordCount] = useState(0);
   const [charCount, setCharCount] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+  const [editorMode, setEditorMode] = useState<'edit' | 'split' | 'preview'>('edit');
+  const [previewVisible, setPreviewVisible] = useState(true);
   const titleInputRef = useRef<HTMLInputElement>(null);
   const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -86,6 +90,33 @@ export function NoteEditor({ note, onSave, onCancel, isOpen }: NoteEditorProps) 
 
   if (!isOpen) return null;
 
+  const renderEditorModeButton = (mode: typeof editorMode, icon: React.ReactNode, label: string) => (
+    <button
+      onClick={() => {
+        setEditorMode(mode);
+        if (mode === 'preview') {
+          setShowPreview(true);
+          setPreviewVisible(true);
+        } else if (mode === 'edit') {
+          setShowPreview(false);
+          setPreviewVisible(true);
+        } else {
+          setShowPreview(true);
+          setPreviewVisible(true);
+        }
+      }}
+      className={`flex items-center space-x-1.5 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg transition-all duration-200 text-xs sm:text-sm font-medium ${
+        editorMode === mode
+          ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
+          : 'bg-slate-700/50 text-slate-400 border border-slate-600/50 hover:bg-slate-700/70 hover:text-slate-300'
+      }`}
+      title={label}
+    >
+      {icon}
+      <span className="hidden lg:inline">{label}</span>
+    </button>
+  );
+
   return (
     <div 
       className={`fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 ${
@@ -117,7 +148,33 @@ export function NoteEditor({ note, onSave, onCancel, isOpen }: NoteEditorProps) 
             </div>
           </div>
           
-          <div className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
+          <div className="flex items-center space-x-1 sm:space-x-2 lg:space-x-3 flex-shrink-0">
+            {/* Mode Editor - Hidden on mobile */}
+            <div className="hidden md:flex items-center space-x-1 bg-slate-800/50 rounded-lg p-1 border border-slate-700/50">
+              {renderEditorModeButton('edit', <Edit3 className="w-3 h-3 sm:w-4 sm:h-4" />, 'Edit')}
+              {renderEditorModeButton('split', <SplitSquareHorizontal className="w-3 h-3 sm:w-4 sm:h-4" />, 'Split')}
+              {renderEditorModeButton('preview', <FileText className="w-3 h-3 sm:w-4 sm:h-4" />, 'Preview')}
+            </div>
+            
+            {/* Mobile preview toggle */}
+            <div className="md:hidden">
+              <button
+                onClick={() => {
+                  setShowPreview(!showPreview);
+                  setEditorMode(showPreview ? 'edit' : 'preview');
+                  setPreviewVisible(true);
+                }}
+                className={`flex items-center space-x-1.5 px-2 py-1.5 rounded-lg transition-all duration-200 text-xs font-medium ${
+                  showPreview
+                    ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
+                    : 'bg-slate-700/50 text-slate-400 border border-slate-600/50 hover:bg-slate-700/70'
+                }`}
+              >
+                <FileText className="w-4 h-4" />
+                <span>{showPreview ? 'Edit' : 'Preview'}</span>
+              </button>
+            </div>
+            
             {/* Keyboard shortcuts - Hidden on mobile */}
             <div className="hidden lg:flex items-center space-x-2 text-xs text-slate-400 bg-slate-800/50 px-3 py-1.5 rounded-lg border border-slate-700/50">
               <span>Ctrl+S to save</span>
@@ -164,82 +221,126 @@ export function NoteEditor({ note, onSave, onCancel, isOpen }: NoteEditorProps) 
         </div>
 
         {/* Content - Responsive */}
-        <div className={`overflow-y-auto ${
+        <div className={`flex-1 overflow-hidden ${
           isFullscreen 
             ? 'h-[calc(100vh-80px)]' 
-            : 'max-h-[calc(95vh-120px)] sm:max-h-[calc(90vh-120px)]'
+            : 'h-[calc(95vh-120px)] sm:h-[calc(90vh-120px)]'
         }`}>
-          <div className="p-3 sm:p-4 lg:p-6 space-y-4 sm:space-y-6">
-            {/* Title - Responsive */}
-            <div>
-              <label htmlFor="title" className="flex items-center space-x-2 text-sm font-medium text-slate-300 mb-2 sm:mb-3">
-                <FileText className="w-4 h-4 text-cyan-400" />
-                <span>Title</span>
-              </label>
-              <input
-                ref={titleInputRef}
-                id="title"
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-900/50 border border-slate-600/50 rounded-lg sm:rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition-all duration-200 text-base sm:text-lg font-medium backdrop-blur-sm"
-                placeholder="Enter note title..."
-              />
-            </div>
-
-            {/* Tags - Responsive */}
-            <div>
-              <label htmlFor="tags" className="flex items-center space-x-2 text-sm font-medium text-slate-300 mb-2 sm:mb-3">
-                <Hash className="w-4 h-4 text-cyan-400" />
-                <span>Tags</span>
-              </label>
-              <input
-                id="tags"
-                type="text"
-                value={tagInput}
-                onChange={(e) => setTagInput(e.target.value)}
-                onKeyDown={handleAddTag}
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-900/50 border border-slate-600/50 rounded-lg sm:rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition-all duration-200 backdrop-blur-sm"
-                placeholder="Type a tag and press Enter..."
-              />
-              {tags.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-2 sm:mt-3">
-                  {tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="inline-flex items-center space-x-2 px-2 sm:px-3 py-1 sm:py-1.5 bg-gradient-to-r from-cyan-500/20 to-blue-600/20 text-cyan-300 text-xs sm:text-sm rounded-md sm:rounded-lg border border-cyan-500/30 backdrop-blur-sm"
-                    >
-                      <Tags className="w-3 h-3" />
-                      <span>{tag}</span>
-                      <button
-                        onClick={() => handleRemoveTag(tag)}
-                        className="text-cyan-400 hover:text-red-400 ml-1 transition-colors duration-200"
-                      >
-                        <X className="w-3 h-3" />
-                      </button>
-                    </span>
-                  ))}
+          <div className={`h-full ${
+            editorMode === 'split' ? 'flex' : 'block'
+          }`}>
+            {/* Editor Panel */}
+            <div className={`${
+              editorMode === 'preview' ? 'hidden' : 
+              editorMode === 'split' ? 'w-1/2 border-r border-slate-700/50' : 'w-full'
+            } ${editorMode === 'split' ? 'overflow-y-auto' : 'h-full overflow-y-auto'}`}>
+              <div className="p-3 sm:p-4 lg:p-6 space-y-4 sm:space-y-6">
+                {/* Title - Responsive */}
+                <div>
+                  <label htmlFor="title" className="flex items-center space-x-2 text-sm font-medium text-slate-300 mb-2 sm:mb-3">
+                    <FileText className="w-4 h-4 text-cyan-400" />
+                    <span>Title</span>
+                  </label>
+                  <input
+                    ref={titleInputRef}
+                    id="title"
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-900/50 border border-slate-600/50 rounded-lg sm:rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition-all duration-200 text-base sm:text-lg font-medium backdrop-blur-sm"
+                    placeholder="Enter note title..."
+                  />
                 </div>
-              )}
+                {/* Tags - Responsive */}
+                <div>
+                  <label htmlFor="tags" className="flex items-center space-x-2 text-sm font-medium text-slate-300 mb-2 sm:mb-3">
+                    <Hash className="w-4 h-4 text-cyan-400" />
+                    <span>Tags</span>
+                  </label>
+                  <input
+                    id="tags"
+                    type="text"
+                    value={tagInput}
+                    onChange={(e) => setTagInput(e.target.value)}
+                    onKeyDown={handleAddTag}
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-900/50 border border-slate-600/50 rounded-lg sm:rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition-all duration-200 backdrop-blur-sm"
+                    placeholder="Type a tag and press Enter..."
+                  />
+                  {tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mt-2 sm:mt-3">
+                      {tags.map((tag, index) => (
+                        <span
+                          key={index}
+                          className="inline-flex items-center space-x-2 px-2 sm:px-3 py-1 sm:py-1.5 bg-gradient-to-r from-cyan-500/20 to-blue-600/20 text-cyan-300 text-xs sm:text-sm rounded-md sm:rounded-lg border border-cyan-500/30 backdrop-blur-sm"
+                        >
+                          <Tags className="w-3 h-3" />
+                          <span>{tag}</span>
+                          <button
+                            onClick={() => handleRemoveTag(tag)}
+                            className="text-cyan-400 hover:text-red-400 ml-1 transition-colors duration-200"
+                          >
+                            <X className="w-3 h-3" />
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Content - Responsive */}
+                <div>
+                  <label htmlFor="content" className="flex items-center space-x-2 text-sm font-medium text-slate-300 mb-2 sm:mb-3">
+                    <FileText className="w-4 h-4 text-cyan-400" />
+                    <span>Content</span>
+                    <span className="text-xs text-slate-500 bg-slate-800/50 px-2 py-0.5 rounded border border-slate-700/50">
+                      Markdown & LaTeX supported
+                    </span>
+                  </label>
+                  <textarea
+                    ref={contentTextareaRef}
+                    id="content"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    className="w-full h-[calc(100vh-500px)] sm:h-[calc(100vh-550px)] px-3 sm:px-4 py-2 sm:py-3 bg-slate-900/50 border border-slate-600/50 rounded-lg sm:rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition-all duration-200 font-mono text-sm sm:text-base backdrop-blur-sm resize-none"
+                    placeholder="Write your note content here..."
+                  ></textarea>
+                </div>
+              </div>
             </div>
 
-            {/* Content - Responsive */}
-            <div>
-              <label htmlFor="content" className="flex items-center space-x-2 text-sm font-medium text-slate-300 mb-2 sm:mb-3">
-                <FileText className="w-4 h-4 text-cyan-400" />
-                <span>Content</span>
-              </label>
-              <textarea
-                ref={contentTextareaRef}
-                id="content"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                rows={isFullscreen ? 25 : 12}
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-900/50 border border-slate-600/50 rounded-lg sm:rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 transition-all duration-200 resize-none leading-relaxed backdrop-blur-sm text-sm sm:text-base"
-                placeholder="Write your note content here..."
+            {/* Preview Panel */}
+            {(editorMode === 'preview' || editorMode === 'split') && (
+              <div className={`${
+                editorMode === 'split' ? 'w-1/2' : 'w-full'
+              } h-full`}>
+                <MarkdownPreview
+                  content={content}
+                  isVisible={previewVisible}
+                  onToggle={() => setPreviewVisible(!previewVisible)}
+                  className="h-full"
+                />
+              </div>
+            )}
+          </div>
+          
+          {/* Mobile Preview Overlay */}
+          {showPreview && editorMode === 'preview' && (
+            <div className="md:hidden absolute inset-0 bg-slate-900 z-10">
+              <MarkdownPreview
+                content={content}
+                isVisible={previewVisible}
+                onToggle={() => {
+                  if (previewVisible) {
+                    setPreviewVisible(false);
+                  } else {
+                    setShowPreview(false);
+                    setEditorMode('edit');
+                  }
+                }}
+                className="h-full"
               />
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

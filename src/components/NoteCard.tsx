@@ -9,6 +9,7 @@ interface NoteCardProps {
   createdAt: number;
   updatedAt: number;
   onEdit: (id: string) => void;
+  onView: (id: string) => void;
   onDelete: (id: string) => void;
   viewMode: 'grid' | 'list';
   animationDelay?: number;
@@ -22,6 +23,7 @@ export function NoteCard({
   createdAt, 
   updatedAt, 
   onEdit, 
+  onView,
   onDelete, 
   viewMode,
   animationDelay = 0
@@ -69,17 +71,17 @@ export function NoteCard({
         <div className="p-4 sm:p-6">
           <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
             <div className="flex-1 min-w-0">
-              <div className="flex items-center space-x-3 mb-3">
+              <div className="flex items-center space-x-3 mb-3 cursor-pointer" onClick={() => onView(id)}>
                 <div className="p-2 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-lg border border-cyan-500/30 flex-shrink-0">
                   <FileText className="w-4 h-4 text-cyan-400" />
                 </div>
-                <h3 className="text-base sm:text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors duration-200 truncate">
+                <h3 className="text-base sm:text-lg font-semibold text-white hover:text-cyan-400 transition-colors duration-200 truncate">
                   {title || 'Untitled Note'}
                 </h3>
               </div>
               
               {content && (
-                <p className="text-slate-300 text-sm mb-4 leading-relaxed">
+                <p className="text-slate-300 text-sm mb-4 leading-relaxed cursor-pointer hover:text-slate-200 transition-colors duration-200" onClick={() => onView(id)}>
                   {truncateContent(content)}
                 </p>
               )}
@@ -148,11 +150,11 @@ export function NoteCard({
     >
       <div className="p-4 sm:p-6">
         <div className="flex items-start justify-between mb-4">
-          <div className="flex items-center space-x-3 flex-1 min-w-0">
+          <div className="flex items-center space-x-3 flex-1 min-w-0 cursor-pointer" onClick={() => onView(id)}>
             <div className="p-2 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-lg border border-cyan-500/30 flex-shrink-0">
               <FileText className="w-4 h-4 text-cyan-400" />
             </div>
-            <h3 className="text-base sm:text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors duration-200 truncate">
+            <h3 className="text-base sm:text-lg font-semibold text-white hover:text-cyan-400 transition-colors duration-200 truncate">
               {title || 'Untitled Note'}
             </h3>
           </div>
@@ -175,7 +177,7 @@ export function NoteCard({
         </div>
 
         {content && (
-          <p className="text-slate-300 text-sm mb-4 leading-relaxed">
+          <p className="text-slate-300 text-sm mb-4 leading-relaxed cursor-pointer hover:text-slate-200 transition-colors duration-200" onClick={() => onView(id)}>
             {truncateContent(content)}
           </p>
         )}

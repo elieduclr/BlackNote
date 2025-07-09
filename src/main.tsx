@@ -6,7 +6,7 @@ import './index.css';
 // Initialize Service Worker for offline functionality
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    console.log('[Main] Initializing BlackNote.js v2.0.4 with offline support');
+    console.log('[Main] Initializing BlackNote.js v2.0.5 with offline support');
   });
 }
 

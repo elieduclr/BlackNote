@@ -129,7 +129,7 @@ Texte brut → ChaCha20 → HMAC → Obfuscation → AES-256-GCM → Stockage
 
 ```bash
 # Cloner le repository
-git clone https://github.com/elieduclr/BlackNote.git
+git clone https://github.com/malicaeus/BlackNote.git
 cd BlackNote
 
 # Installer les dépendances
@@ -309,7 +309,7 @@ Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de 
 
 **📱 Maintenant avec mode hors ligne complet et PWA !**
 
-[![GitHub stars](https://img.shields.io/github/stars/elieduclr/BlackNote?style=social)](https://github.com/elieduclr/BlackNote/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/elieduclr/BlackNote?style=social)](https://github.com/elieduclr/BlackNote/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/malicaeus/BlackNote?style=social)](https://github.com/malicaeus/BlackNote/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/malicaeus/BlackNote?style=social)](https://github.com/malicaeus/BlackNote/network/members)
 
 </div>
